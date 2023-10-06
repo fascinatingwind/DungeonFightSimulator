@@ -5,12 +5,12 @@
 
 struct CharSheet
 {
-    std::string name; //maybe some better string type ?
-    std::string race; //maybe special class for race ?
-    std::string class; //maybe special class for class ?
+    std::string _name; //maybe some better string type ?
+    std::string _race; //maybe special class for race ?
+    std::string _class; //maybe special class for class ?
 
     //Stats fields
-    int _str;//strength 
+    int _str;//strength
     int _dex;//dexterity
     int _cns;//constituion
     int _int;//intellegence
@@ -38,4 +38,4 @@ struct CharSheet
 
     //action list (maybe another container ???)
     std::vector<Action> _actions;
-}
+};

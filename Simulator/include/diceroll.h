@@ -3,5 +3,5 @@
 
 struct DiceRoll
 {
-    std::pair<int, int, int> _dice; //2d8+3 => (2,8,3)
-}
+    std::tuple<int, int, int> _dice; //2d8+3 => (2,8,3)
+};

@@ -1,8 +1,9 @@
 #pragma once
 #include"diceroll.h"
 #include<string>
+
 struct Action
 {
-    std::string _action_name;
-    DiceRoll _damage; // starting with constant damage
+    std::string actionName_;
+    DiceRoll damage_; // starting with constant damage
 };

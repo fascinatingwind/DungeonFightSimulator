@@ -1,41 +1,43 @@
 #pragma once
 #include <string>
+#include <vector>
+
 #include "action.h"
 #include "diceroll.h"
 
 struct CharSheet
 {
-    std::string _name; //maybe some better string type ?
-    std::string _race; //maybe special class for race ?
-    std::string _class; //maybe special class for class ?
+    std::string name_;      //maybe some better string type ?
+    std::string race_;      //maybe special class for race_ ? enum ?
+    std::string class_;     //maybe special class for class_ ? enum ?
 
     //Stats fields
-    int _str;//strength
-    int _dex;//dexterity
-    int _cns;//constituion
-    int _int;//intellegence
-    int _wis;//wisdom
-    int _chr;//charisma
+    int str_;   //strength
+    int dex_;   //dexterity
+    int cns_;   //constituion
+    int int_;   //intellegence
+    int wis_;   //wisdom
+    int chr_;   //charisma
 
     //Saving throws
-    DiceRoll _StStr;
-    DiceRoll _StDex;
-    DiceRoll _StCns;
-    DiceRoll _StInt;
-    DiceRoll _StWis;
-    DiceRoll _StChr;
+    DiceRoll stStr_;
+    DiceRoll stDex_;
+    DiceRoll stCns_;
+    DiceRoll stInt_;
+    DiceRoll stWis_;
+    DiceRoll stChr_;
 
     //HP fields
-    int _hp;
-    int _maxHp;
-    //DiceRoll  _hpDice; //2d8 => (2,8)
-    int _tempHp;
+    int hp_;
+    int maxHp_;
+    //DiceRoll  _hpDice; need to think if hp dice is essential for combat
+    int tempHp_;
 
     //Battle stats fields
-    int _ac;//armor class
-    int _initBonus; //initiative bonus
-    int _speed;
+    int ac_;        //armor class
+    int initBonus_; //initiative bonus
+    int speed_;     //character speed
 
     //action list (maybe another container ???)
-    std::vector<Action> _actions;
+    std::vector<Action> actions_;
 };

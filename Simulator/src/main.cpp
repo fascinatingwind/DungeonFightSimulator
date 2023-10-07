@@ -1,6 +1,11 @@
 #include <cstdlib>
+#include "action.h"
+#include "character.h"
+#include "diceroll.h"
+#include <iostream>
 
 int main(int argc, char* argv[])
 {
- return EXIT_SUCCESS;
+    std::cout<<"Hello world!"<<std::endl;
+    return EXIT_SUCCESS;
 }

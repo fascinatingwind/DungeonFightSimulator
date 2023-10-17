@@ -8,14 +8,13 @@ set(HEADER_FILES
 	"include/character.h"
 	"include/diceroll.h"
 	"include/action.h"
-	"include/actionfactory.h"
+	"include/makefooaction.h"
 	)
 set(SOURCE_FILES
 	"src/main.cpp"
 	"src/action.cpp"
 	"src/diceroll.cpp"
 	"src/main.cpp"
-	"src/actionfactory.cpp"
 	)
 
 add_executable(Simulator ${HEADER_FILES} ${SOURCE_FILES})

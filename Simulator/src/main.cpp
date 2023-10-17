@@ -4,8 +4,6 @@
 #include "dice.h"
 #include <iostream>
 
-void diceTest();
-
 int main(int argc, char* argv[])
 {
     diceTest();

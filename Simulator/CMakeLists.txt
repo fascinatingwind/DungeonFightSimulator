@@ -10,11 +10,14 @@ set(HEADER_FILES
 	"include/action.h"
 	"include/makefooaction.h"
 	)
+
 set(SOURCE_FILES
 	"src/main.cpp"
 	"src/action.cpp"
 	"src/diceroll.cpp"
-	"src/main.cpp"
+	"src/character.cpp"
 	)
 
 add_executable(Simulator ${HEADER_FILES} ${SOURCE_FILES})
+
+add_executable(TEST_ROLL test/diceroll_test.cpp include/diceroll.h src/diceroll.cpp)

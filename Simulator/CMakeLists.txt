@@ -19,5 +19,3 @@ set(SOURCE_FILES
 	)
 
 add_executable(Simulator ${HEADER_FILES} ${SOURCE_FILES})
-
-add_executable(TEST_ROLL test/dice_test.cpp include/dice.h src/dice.cpp)

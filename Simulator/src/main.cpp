@@ -1,8 +1,10 @@
 #include <cstdlib>
+#include <iostream>
+
 #include "action.h"
 #include "character.h"
 #include "dice.h"
-#include <iostream>
+#include "main.h"
 
 int main(int argc, char* argv[])
 {

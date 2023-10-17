@@ -1,15 +1,15 @@
 #include <random>
 #include "diceroll.h"
 
-DiceRoll::DiceRoll() : diceCount_(1), diceValue_(20), diceBonus_(0){}
+Dice::Dice() : diceCount_(1), diceValue_(20), diceBonus_(0){}
 
-DiceRoll::DiceRoll(int diceCount, int diceValue):
+Dice::Dice(int diceCount, int diceValue):
     diceCount_(diceCount), diceValue_(diceValue), diceBonus_(0){}
 
-DiceRoll::DiceRoll(int diceCount, int diceValue, int diceBonus):
+Dice::Dice(int diceCount, int diceValue, int diceBonus):
     diceCount_(diceCount), diceValue_(diceValue), diceBonus_(diceBonus){}
 
-int DiceRoll::roll()
+int Dice::roll()
 {
     std::random_device rd;
     std::mt19937 gen(rd());

@@ -1,5 +1,5 @@
 #include <random>
-#include "diceroll.h"
+#include "dice.h"
 
 Dice::Dice() : diceCount_(1), diceValue_(20), diceBonus_(0){}
 

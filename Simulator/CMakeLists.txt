@@ -6,7 +6,7 @@ link_directories(src)
 set(HEADER_FILES
 	"include/main.h"
 	"include/character.h"
-	"include/diceroll.h"
+	"include/dice.h"
 	"include/action.h"
 	"include/makefooaction.h"
 	)
@@ -14,10 +14,10 @@ set(HEADER_FILES
 set(SOURCE_FILES
 	"src/main.cpp"
 	"src/action.cpp"
-	"src/diceroll.cpp"
+	"src/dice.cpp"
 	"src/character.cpp"
 	)
 
 add_executable(Simulator ${HEADER_FILES} ${SOURCE_FILES})
 
-add_executable(TEST_ROLL test/diceroll_test.cpp include/diceroll.h src/diceroll.cpp)
+add_executable(TEST_ROLL test/dice_test.cpp include/dice.h src/dice.cpp)

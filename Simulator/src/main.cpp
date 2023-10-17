@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include "action.h"
 #include "character.h"
-#include "diceroll.h"
+#include "dice.h"
 #include <iostream>
 
 int main(int argc, char* argv[])

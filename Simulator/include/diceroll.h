@@ -1,7 +1,14 @@
 #pragma once
-#include <tuple>
 
-struct DiceRoll
+class DiceRoll
 {
-    std::tuple<int, int, int> dice_; //2d8+3 => (2,8,3)
+    int diceCount_;
+    int diceValue_;
+    int diceBonus_;
+
+public:
+    DiceRoll();             //1d20+0
+    DiceRoll(int, int);     //diceCount d diceValue + 0
+    DiceRoll(int, int, int);//diceCount d diceValue + diceBonus
+    roll();
 };

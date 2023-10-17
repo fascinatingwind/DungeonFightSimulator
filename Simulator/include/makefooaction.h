@@ -2,4 +2,4 @@
 #include <string>
 #include "action.h"
 
-Action makeFooAction(std::string actionName_);
+Action makeFooAction(const std::string & actionName_);

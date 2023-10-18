@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "action.h"
-#include "diceroll.h"
+#include "dice.h"
 
 struct CharSheet
 {
@@ -20,12 +20,12 @@ struct CharSheet
     int chr_;   //charisma
 
     //Saving throws
-    DiceRoll stStr_;
-    DiceRoll stDex_;
-    DiceRoll stCns_;
-    DiceRoll stInt_;
-    DiceRoll stWis_;
-    DiceRoll stChr_;
+    Dice stStr_;
+    Dice stDex_;
+    Dice stCns_;
+    Dice stInt_;
+    Dice stWis_;
+    Dice stChr_;
 
     //HP fields
     int hp_;

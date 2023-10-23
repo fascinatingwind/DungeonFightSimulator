@@ -22,3 +22,13 @@ int Dice::roll()
 
     return sum;
 }
+
+int Dice::getBonus() const
+{
+    return diceBonus_;
+}
+std::ostream& operator << (std::ostream & os, const Dice& dice)
+{
+    return os << dice.diceCount_ << " " <<
+                 dice.diceValue_ << " " << dice.diceBonus_;
+}

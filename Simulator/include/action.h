@@ -14,4 +14,6 @@ class Action
 public:
     Action(const std::string & actionName, Dice damage, Dice attack);
     void useOn(CharSheet& targetChar, int attackBonus = 0, int damageBonus = 0);
+    
+    friend std::ostream& operator << (std::ostream & os, const Action& action);
 };

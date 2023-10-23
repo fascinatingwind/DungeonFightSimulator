@@ -71,7 +71,6 @@ Action readAction(std::ifstream & file)
     int dmgCount, dmgValue, dmgBonus; //параметры для кубика урона
     
     std::getline(file, action_name);
-    std::cout<<action_name;
     
     file >> atkCount;
     file >> atkValue;
@@ -84,5 +83,37 @@ Action readAction(std::ifstream & file)
     file.get(); //skipping additional row
     
     
-    return Action(action_name, Dice(atkCount, atkValue, atkCount), Dice(dmgCount, dmgValue, dmgBonus));
+    return Action(action_name, Dice(dmgCount, dmgValue, dmgBonus), Dice(atkCount, atkValue, atkBonus));
+}
+
+void writeCharacter(const CharSheet & character)
+{
+    std::string fileName("../characters/" + character.name_ + ".txt");
+    std::ofstream file;
+    
+    file.open(fileName, std::ios::out | std::ios::trunc);
+
+    file << character.name_  << std::endl;
+    file << character.race_  << std::endl;
+    file << character.class_ << std::endl;
+    
+    file << character.str_ << " " << character.dex_ << " " <<
+            character.cns_ << " " << character.int_ << " " <<
+            character.wis_ << " " << character.chr_ << std::endl;
+    
+    file << character.stStr_.getBonus() << " " <<                     character.stDex_.getBonus() << " " <<
+            character.stCns_.getBonus() << " " <<
+            character.stInt_.getBonus() << " " <<
+            character.stWis_.getBonus() << " " <<
+            character.stChr_.getBonus() << std::endl;
+    
+    file << character.hp_ << " " << character.maxHp_ << " " <<
+            character.tempHp_ << std::endl;
+    
+    file << character.ac_ << " " << character.initBonus_ << " " <<
+            character.speed_ << std::endl;
+    
+    for(auto & action : character.actions_)
+        file << action;
+    file.close();
 }

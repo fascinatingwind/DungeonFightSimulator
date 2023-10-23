@@ -3,7 +3,8 @@
 #define MAIN_H
 
 void diceTest();
-void fileHandlingTest();
+void fileReadingTest();
+void fileWritingTest();
 
 int main(int argc, char* argv[]);
 #endif

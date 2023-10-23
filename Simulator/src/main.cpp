@@ -5,10 +5,12 @@
 #include "character.h"
 #include "dice.h"
 #include "main.h"
+#include "filehandling.h"
 
 int main(int argc, char* argv[])
 {
-    diceTest();
+    //diceTest();
+    readCharacter("../characters/Johny.txt");
     return EXIT_SUCCESS;
 }
 

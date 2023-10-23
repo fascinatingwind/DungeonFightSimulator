@@ -10,8 +10,38 @@
 int main(int argc, char* argv[])
 {
     //diceTest();
-    readCharacter("../characters/Johny.txt");
+    fileHandlingTest();
     return EXIT_SUCCESS;
+}
+void fileHandlingTest()
+{
+    CharSheet Johny;
+    std::cout<<"Trying to read Johny file ::" <<std::endl;
+    try
+    {
+        Johny = readCharacter("../characters/Johny.txt");
+    }
+    catch(...)
+    {
+        std::cout<<"wrong filename"<<std::endl;
+    }
+    
+    std::cout<<"Johny strength save rolls :"<<std::endl;
+    for(int i = 0; i < 20; i++)
+        std::cout<<Johny.stStr_.roll()<<" ";
+    std::cout<<std::endl;
+    
+    
+    std::cout<<"Trying to read non-existing file :"<<std::endl;
+    try
+    {
+        readCharacter("../characters/Jerry.txt");
+    }
+    catch(...)
+    {
+        std::cout<<"--error - file does not exist--"<<std::endl;
+    }
+
 }
 
 void diceTest()

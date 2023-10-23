@@ -12,6 +12,6 @@ class Action
     Dice attack_;
 
 public:
-    Action(const std::string & actionName_, Dice damage_, Dice attack_);
+    Action(const std::string & actionName, Dice damage, Dice attack);
     void useOn(CharSheet& targetChar, int attackBonus = 0, int damageBonus = 0);
 };

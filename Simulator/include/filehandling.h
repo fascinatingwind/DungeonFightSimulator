@@ -7,4 +7,6 @@
 #include "action.h"
 
 CharSheet readCharacter(const std::string & fileName);
-//Action readAction(std::ifstream & openFile);
+Action readAction(std::ifstream & file);
+
+void writeCharacter(const CharSheet & character);

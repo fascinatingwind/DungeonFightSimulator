@@ -2,6 +2,7 @@
 #include <fstream>
 #include <stdexcept>
 
+#include "filehandling.h"
 #include "character.h"
 #include "action.h"
 #include "vector"
@@ -13,20 +14,16 @@
 CharSheet readCharacter(const std::string & fileName)
 {
     CharSheet character;
-    std::string name, race, class_;
-    std::vector<Action> actions;
-    int str, dex, cns, int_, wis, chr; //бонусы характеристик
-    int stStr, stDex, stCns, stInt, stWis, stChr; //бонусы спасбросков
-    int hp, maxHp, tempHp; //данные о здоровье
-    int ac, initBonus, speed; //данные для боя
+    
+    int stStr, stDex, stCns, stInt, stWis, stChr;   //бонусы спасбросков
 
     std::ifstream file(fileName);
     if(!file)
         throw std::invalid_argument("there is no such file as "+fileName);
         
-    std::getline(file, name);
-    std::getline(file, race);
-    std::getline(file, class_);
+    std::getline(file, character.name_);
+    std::getline(file, character.race_);
+    std::getline(file, character.class_);
 
     file >> character.str_;
     file >> character.dex_;
@@ -55,15 +52,37 @@ CharSheet readCharacter(const std::string & fileName)
     file >> character.ac_;
     file >> character.initBonus_;
     file >> character.speed_;
+    file.get();
     
-    //Вставить цикл, считывающий действия
+    file.get(); //skipping additional row
+    
+    while (file)
+        character.actions_.push_back(readAction(file));
     
     file.close();
     
     return character;
 }
 
-//Action readAction(std::ifstream & openFile)
-//{
-//    return Action();
-//}
+Action readAction(std::ifstream & file)
+{
+    std::string action_name;
+    int atkCount, atkValue, atkBonus; //параметры для кубика атаки
+    int dmgCount, dmgValue, dmgBonus; //параметры для кубика урона
+    
+    std::getline(file, action_name);
+    std::cout<<action_name;
+    
+    file >> atkCount;
+    file >> atkValue;
+    file >> atkBonus;
+    file >> dmgCount;
+    file >> dmgValue;
+    file >> dmgBonus;
+    file.get();
+    
+    file.get(); //skipping additional row
+    
+    
+    return Action(action_name, Dice(atkCount, atkValue, atkCount), Dice(dmgCount, dmgValue, dmgBonus));
+}

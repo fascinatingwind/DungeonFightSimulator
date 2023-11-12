@@ -10,8 +10,8 @@
 int main(int argc, char* argv[])
 {
     //diceTest();
-    fileWritingTest();
-//    fileReadingTest();
+//    fileWritingTest();
+    fileReadingTest();
     return EXIT_SUCCESS;
 }
 
@@ -44,7 +44,7 @@ void fileReadingTest()
     std::cout<<"Trying to read non-existing file :"<<std::endl;
     try
     {
-        readCharacter("../characters/Jerry.txt");
+        readCharacter("../characters/Jimbo.txt");
     }
     catch(...)
     {

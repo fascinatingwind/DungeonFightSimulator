@@ -10,6 +10,7 @@ set(HEADER_FILES
 	"include/action.h"
 	"include/makefooaction.h"
 	"include/filehandling.h"
+	"include/parser.h"
 	)
 
 set(SOURCE_FILES
@@ -17,7 +18,8 @@ set(SOURCE_FILES
 	"src/action.cpp"
 	"src/dice.cpp"
 	"src/character.cpp"
-	"src/filehandling"
+	"src/filehandling.cpp"
+	"src/parser.cpp"
 	)
 
 add_executable(Simulator ${HEADER_FILES} ${SOURCE_FILES})

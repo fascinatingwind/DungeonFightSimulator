@@ -1,89 +1,67 @@
 #include <string>
+#include <vector>
 #include <fstream>
 #include <stdexcept>
 
 #include "filehandling.h"
+#include "parser.h"
+
 #include "character.h"
 #include "action.h"
-#include "vector"
+#include "dice.h"
 
-//for test
-#include <iostream>
-//for test ended
 
 CharSheet readCharacter(const std::string & fileName)
 {
     CharSheet character;
+    Parser parser(fileName);
     
-    int stStr, stDex, stCns, stInt, stWis, stChr;   //бонусы спасбросков
+    
+    //Parsing fileStream for name, class and race
+    character.name_  = parser.parseStreamForNextItem<std::string>();
+    character.race_  = parser.parseStreamForNextItem<std::string>();
+    character.class_ = parser.parseStreamForNextItem<std::string>();
+    
+    
+    //Parsing fileStream for stats
+    character.str_ = parser.parseStreamForNextItem<int>();
+    character.dex_ = parser.parseStreamForNextItem<int>();
+    character.cns_ = parser.parseStreamForNextItem<int>();
+    character.int_ = parser.parseStreamForNextItem<int>();
+    character.wis_ = parser.parseStreamForNextItem<int>();
+    character.chr_ = parser.parseStreamForNextItem<int>();
+    
+    
+    //Parsing fileStream for savethrows
+    character.stStr_ = parser.parseStreamForNextItem<Dice>();
+    character.stDex_ = parser.parseStreamForNextItem<Dice>();
+    character.stCns_ = parser.parseStreamForNextItem<Dice>();
+    character.stInt_ = parser.parseStreamForNextItem<Dice>();
+    character.stWis_ = parser.parseStreamForNextItem<Dice>();
+    character.stChr_ = parser.parseStreamForNextItem<Dice>();
+    
 
-    std::ifstream file(fileName);
-    if(!file)
-        throw std::invalid_argument("there is no such file as "+fileName);
-        
-    std::getline(file, character.name_);
-    std::getline(file, character.race_);
-    std::getline(file, character.class_);
-
-    file >> character.str_;
-    file >> character.dex_;
-    file >> character.cns_;
-    file >> character.int_;
-    file >> character.wis_;
-    file >> character.chr_;
+    //Parsing fileStream for hp information
+    character.hp_        = parser.parseStreamForNextItem<int>();
+    character.maxHp_     = parser.parseStreamForNextItem<int>();
+    character.tempHp_    = parser.parseStreamForNextItem<int>();
     
-    file >> stStr;
-    character.stStr_ = Dice(1, 20, stStr);
-    file >> stDex;
-    character.stDex_ = Dice(1, 20, stDex);
-    file >> stCns;
-    character.stCns_ = Dice(1, 20, stCns);
-    file >> stInt;
-    character.stInt_ = Dice(1, 20, stInt);
-    file >> stWis;
-    character.stWis_ = Dice(1, 20, stWis);
-    file >> stChr;
-    character.stChr_ = Dice(1, 20, stChr);
     
-    file >> character.hp_;
-    file >> character.maxHp_;
-    file >> character.tempHp_;
+    //Parsing additional battle stats
+    character.ac_        = parser.parseStreamForNextItem<int>();
+    character.initBonus_ = parser.parseStreamForNextItem<int>();
+    character.speed_     = parser.parseStreamForNextItem<int>();
     
-    file >> character.ac_;
-    file >> character.initBonus_;
-    file >> character.speed_;
-    file.get();
+    parser.skipLine();
     
-    file.get(); //skipping additional row
+    parser.skipLine();//skipping additional row
     
-    while (file)
-        character.actions_.push_back(readAction(file));
-    
-    file.close();
+    while(!parser.isEndOfFile())
+    {
+        character.actions_.push_back(parser.parseStreamForNextItem<Action>());
+    }
     
     return character;
-}
-
-Action readAction(std::ifstream & file)
-{
-    std::string action_name;
-    int atkCount, atkValue, atkBonus; //параметры для кубика атаки
-    int dmgCount, dmgValue, dmgBonus; //параметры для кубика урона
-    
-    std::getline(file, action_name);
-    
-    file >> atkCount;
-    file >> atkValue;
-    file >> atkBonus;
-    file >> dmgCount;
-    file >> dmgValue;
-    file >> dmgBonus;
-    file.get();
-    
-    file.get(); //skipping additional row
-    
-    
-    return Action(action_name, Dice(dmgCount, dmgValue, dmgBonus), Dice(atkCount, atkValue, atkBonus));
 }
 
 void writeCharacter(const CharSheet & character)
@@ -92,26 +70,26 @@ void writeCharacter(const CharSheet & character)
     std::ofstream file;
     
     file.open(fileName, std::ios::out | std::ios::trunc);
-
+    
     file << character.name_  << std::endl;
     file << character.race_  << std::endl;
     file << character.class_ << std::endl;
     
     file << character.str_ << " " << character.dex_ << " " <<
-            character.cns_ << " " << character.int_ << " " <<
-            character.wis_ << " " << character.chr_ << std::endl;
+    character.cns_ << " " << character.int_ << " " <<
+    character.wis_ << " " << character.chr_ << std::endl;
     
     file << character.stStr_.getBonus() << " " <<                     character.stDex_.getBonus() << " " <<
-            character.stCns_.getBonus() << " " <<
-            character.stInt_.getBonus() << " " <<
-            character.stWis_.getBonus() << " " <<
-            character.stChr_.getBonus() << std::endl;
+    character.stCns_.getBonus() << " " <<
+    character.stInt_.getBonus() << " " <<
+    character.stWis_.getBonus() << " " <<
+    character.stChr_.getBonus() << std::endl;
     
     file << character.hp_ << " " << character.maxHp_ << " " <<
-            character.tempHp_ << std::endl;
+    character.tempHp_ << std::endl;
     
     file << character.ac_ << " " << character.initBonus_ << " " <<
-            character.speed_ << std::endl;
+    character.speed_ << std::endl;
     
     for(auto & action : character.actions_)
         file << action;

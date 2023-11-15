@@ -6,12 +6,15 @@
 #include "dice.h"
 #include "main.h"
 #include "filehandling.h"
+#include "example_parser.h"
 
 int main(int argc, char* argv[])
 {
+    const auto sheet = makeParse<example_sheet>("");
+    const auto sheet_vec = makeParse<example_vec>("");
     //diceTest();
 //    fileWritingTest();
-    fileReadingTest();
+    //fileReadingTest();
     return EXIT_SUCCESS;
 }
 
@@ -35,12 +38,12 @@ void fileReadingTest()
     {
         std::cout<<"wrong filename"<<std::endl;
     }
-    
+
     std::cout<<"Johny strength save rolls :"<<std::endl;
     for(int i = 0; i < 20; i++)
         std::cout<<Johny.stStr_.roll()<<" ";
     std::cout<<std::endl;
-    
+
     std::cout<<"Trying to read non-existing file :"<<std::endl;
     try
     {

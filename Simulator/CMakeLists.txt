@@ -11,6 +11,7 @@ set(HEADER_FILES
 	"include/makefooaction.h"
 	"include/filehandling.h"
 	"include/parser.h"
+	"include/example_parser.h"
 	)
 
 set(SOURCE_FILES
